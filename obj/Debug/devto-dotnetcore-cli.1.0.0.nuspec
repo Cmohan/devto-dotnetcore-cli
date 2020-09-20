@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>devto-dotnetcore-cli</id>
+    <version>1.0.0</version>
+    <authors>devto-dotnetcore-cli</authors>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Package Description</description>
+    <packageTypes>
+      <packageType name="DotnetTool" />
+    </packageTypes>
+    <contentFiles>
+      <files include="any/netcoreapp3.1/commands.json" buildAction="Content" />
+    </contentFiles>
+  </metadata>
+  <files>
+    <file src="C:\Users\cathe\Code\C#\devto-dotnetcore-cli\obj\DotnetToolSettings.xml" target="tools\netcoreapp3.1\any\DotnetToolSettings.xml" />
+    <file src="C:\Users\cathe\Code\C#\devto-dotnetcore-cli\bin\Debug\netcoreapp3.1\publish\commands.json" target="tools\netcoreapp3.1\any\commands.json" />
+    <file src="C:\Users\cathe\Code\C#\devto-dotnetcore-cli\bin\Debug\netcoreapp3.1\publish\devto-dotnetcore-cli.dll" target="tools\netcoreapp3.1\any\devto-dotnetcore-cli.dll" />
+    <file src="C:\Users\cathe\Code\C#\devto-dotnetcore-cli\bin\Debug\netcoreapp3.1\publish\devto-dotnetcore-cli.deps.json" target="tools\netcoreapp3.1\any\devto-dotnetcore-cli.deps.json" />
+    <file src="C:\Users\cathe\Code\C#\devto-dotnetcore-cli\bin\Debug\netcoreapp3.1\publish\devto-dotnetcore-cli.runtimeconfig.json" target="tools\netcoreapp3.1\any\devto-dotnetcore-cli.runtimeconfig.json" />
+    <file src="C:\Users\cathe\Code\C#\devto-dotnetcore-cli\bin\Debug\netcoreapp3.1\publish\devto-dotnetcore-cli.pdb" target="tools\netcoreapp3.1\any\devto-dotnetcore-cli.pdb" />
+    <file src="C:\Users\cathe\Code\C#\devto-dotnetcore-cli\bin\Debug\netcoreapp3.1\publish\System.CommandLine.dll" target="tools\netcoreapp3.1\any\System.CommandLine.dll" />
+    <file src="C:\Users\cathe\Code\C#\devto-dotnetcore-cli\commands.json" target="content\commands.json" />
+    <file src="C:\Users\cathe\Code\C#\devto-dotnetcore-cli\commands.json" target="contentFiles\any\netcoreapp3.1\commands.json" />
+  </files>
+</package>

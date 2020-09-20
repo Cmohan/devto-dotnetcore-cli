@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "dgSpecHash": "cpF7+0743h+aF5pQ43pTvoONBLUA4ch/TNUwk61VGzdNfXY2tcBCYLBz+Lo4NEd/yw6Kd+XvT9vaRFLA5kwAPA==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\cathe\\Code\\C#\\devto-dotnetcore-cli\\devto-dotnetcore-cli.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\cathe\\.nuget\\packages\\microsoft.csharp\\4.4.1\\microsoft.csharp.4.4.1.nupkg.sha512",
+    "C:\\Users\\cathe\\.nuget\\packages\\system.commandline\\2.0.0-beta1.20371.2\\system.commandline.2.0.0-beta1.20371.2.nupkg.sha512",
+    "C:\\Users\\cathe\\.nuget\\packages\\system.memory\\4.5.4\\system.memory.4.5.4.nupkg.sha512"
+  ],
+  "logs": []
+}

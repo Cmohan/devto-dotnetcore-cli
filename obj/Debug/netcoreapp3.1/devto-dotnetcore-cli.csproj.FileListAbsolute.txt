@@ -1,0 +1,15 @@
+C:\Users\cathe\Code\C#\devto-dotnetcore-cli\bin\Debug\netcoreapp3.1\devto-dotnetcore-cli.exe
+C:\Users\cathe\Code\C#\devto-dotnetcore-cli\bin\Debug\netcoreapp3.1\devto-dotnetcore-cli.deps.json
+C:\Users\cathe\Code\C#\devto-dotnetcore-cli\bin\Debug\netcoreapp3.1\devto-dotnetcore-cli.runtimeconfig.json
+C:\Users\cathe\Code\C#\devto-dotnetcore-cli\bin\Debug\netcoreapp3.1\devto-dotnetcore-cli.runtimeconfig.dev.json
+C:\Users\cathe\Code\C#\devto-dotnetcore-cli\bin\Debug\netcoreapp3.1\devto-dotnetcore-cli.dll
+C:\Users\cathe\Code\C#\devto-dotnetcore-cli\bin\Debug\netcoreapp3.1\devto-dotnetcore-cli.pdb
+C:\Users\cathe\Code\C#\devto-dotnetcore-cli\bin\Debug\netcoreapp3.1\System.CommandLine.dll
+C:\Users\cathe\Code\C#\devto-dotnetcore-cli\obj\Debug\netcoreapp3.1\devto-dotnetcore-cli.csprojAssemblyReference.cache
+C:\Users\cathe\Code\C#\devto-dotnetcore-cli\obj\Debug\netcoreapp3.1\devto-dotnetcore-cli.AssemblyInfoInputs.cache
+C:\Users\cathe\Code\C#\devto-dotnetcore-cli\obj\Debug\netcoreapp3.1\devto-dotnetcore-cli.AssemblyInfo.cs
+C:\Users\cathe\Code\C#\devto-dotnetcore-cli\obj\Debug\netcoreapp3.1\devto-dotnetcore-cli.csproj.CoreCompileInputs.cache
+C:\Users\cathe\Code\C#\devto-dotnetcore-cli\obj\Debug\netcoreapp3.1\devto-dotnetcore-cli.csproj.CopyComplete
+C:\Users\cathe\Code\C#\devto-dotnetcore-cli\obj\Debug\netcoreapp3.1\devto-dotnetcore-cli.dll
+C:\Users\cathe\Code\C#\devto-dotnetcore-cli\obj\Debug\netcoreapp3.1\devto-dotnetcore-cli.pdb
+C:\Users\cathe\Code\C#\devto-dotnetcore-cli\obj\Debug\netcoreapp3.1\devto-dotnetcore-cli.genruntimeconfig.cache

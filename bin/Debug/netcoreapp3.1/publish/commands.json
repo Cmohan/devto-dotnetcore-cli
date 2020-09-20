@@ -1,0 +1,17 @@
+[
+    {
+        "name": "add-api-key",
+        "description": "Adds new Dev.to API key for use in other commands",
+        "builderFunction": "buildCmdNewAPI"
+    },
+    {
+        "name": "prep-article",
+        "description": "Prepares a Markdown article for posting to Dev.to by replacing image links to point to GitHub repo",
+        "builderFunction": "buildCmdPrepArticle"
+    },
+    {
+        "name": "list-all-articles",
+        "description": "Lists all your Dev.to articles, published and unpublished",
+        "builderFunction": "buildCmdListAllArticles"
+    }
+]
