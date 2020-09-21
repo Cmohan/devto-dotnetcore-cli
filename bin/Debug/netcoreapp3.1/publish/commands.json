@@ -13,5 +13,20 @@
         "name": "list-all-articles",
         "description": "Lists all your Dev.to articles, published and unpublished",
         "builderFunction": "buildCmdListAllArticles"
+    },
+    {
+        "name": "get-article-by-url",
+        "description": "Gets any Dev.to article using the URL of that article",
+        "builderFunction": "buildCmdGetArticleByUrl"
+    },
+    {
+        "name": "post-article",
+        "description": "Posts a new article to Dev.to",
+        "builderFunction": "buildCmdPostArticle"
+    },
+    {
+        "name": "update-article",
+        "description": "Updates a previously posted article",
+        "builderFunction": "buildCmdUpdateArticle"
     }
 ]

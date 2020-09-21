@@ -4,15 +4,16 @@ class Article
     public int id { get; set; }
     public string title { get; set; }
     public string description { get; set; }
-    public bool published { get; set; }
-    public string published_timestamp { get; set; }
+    public string cover_image { get; set; }
+    public string[] tags { get; set; }
     public string url { get; set; }
+    public bool published { get; set; }
+    public string created_at { get; set; }
+    public string published_timestamp { get; set; }
     public int comments_count { get; set; }
     public int public_reactions_count { get; set; }
     public int page_views_count { get; set; }
     public string body_markdown { get; set; }
-    public string[] tag_list { get; set; }
-    public string cover_image { get; set; }
 
     public override string ToString()
     {
@@ -23,7 +24,7 @@ class Article
     {
         string tagList = "";
 
-        foreach (var tag in tag_list)
+        foreach (var tag in tags)
         {
             tagList += $"{tag}, ";
         }
