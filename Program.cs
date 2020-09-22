@@ -4,6 +4,7 @@ using System.CommandLine;
 using System.IO;
 using System.Text.Json;
 using System.Reflection;
+using System.Net.Http;
 
 namespace devto_dotnetcore_cli
 {
