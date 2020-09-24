@@ -3,6 +3,10 @@ class Error
     public string error { get; set; }
     public int status { get; set; }
 
+    public Error (){
+        this.error = "";
+        this.status = 0;
+    }
     public Error (string error)
     {
         this.error = error;
@@ -18,11 +22,11 @@ class Error
     {
         if (status != 0)
         {
-            return $"Error: {status} - {error}";
+            return $"\nError: {status} - {error}\n";
         }
         else
         {
-            return $"Error: {error}";
+            return $"\nError: {error}\n";
         }
     }
 }

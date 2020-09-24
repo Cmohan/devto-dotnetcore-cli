@@ -6,6 +6,8 @@ using System.Text.Json;
 using System.Reflection;
 using System.Net.Http;
 
+//TODO: Write Readme & How to's on all commands
+
 namespace devto_dotnetcore_cli
 {
     class Program
@@ -18,6 +20,7 @@ namespace devto_dotnetcore_cli
             {
                 rootCommand.AddCommand(c);
             }
+            
             rootCommand.InvokeAsync(args).Wait();
         }
 
@@ -54,13 +57,11 @@ namespace devto_dotnetcore_cli
             }
             catch (FileNotFoundException)
             {
-                Console.WriteLine("No saved API key found. Please run the \"new-api-key\" command to save an API key.");
-                return null;
+                return "No saved API key found. Please run the 'new-api-key' command to save an API key.";
             }
             catch (Exception e)
             {
-                Console.WriteLine($"Error: {e.Message}");
-                return null;
+                return $"Type: {e.InnerException}\nMessage:{e.Message}";
             }
 
             return apiKey.key;

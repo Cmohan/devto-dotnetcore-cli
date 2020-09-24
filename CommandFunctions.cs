@@ -14,6 +14,13 @@ namespace devto_dotnetcore_cli
         public static void NewAPIKey(string apiKey)
         {
             //Get API key from user and save it to a file in the Conent folder
+
+            if (apiKey == null)
+            {
+                Console.WriteLine(new Error($"API key cannot be emtpy. Please provide your Dev.to API key."));
+                return;
+            }
+
             try
             {
                 var key = new DevtoAPIKey(apiKey);
@@ -32,16 +39,24 @@ namespace devto_dotnetcore_cli
         public static void ListAllArticles()
         {
             //Gets all articles of the user, published and unpublished
-            try
-            {
-                string result = ListAllArticlesRequest().GetAwaiter().GetResult();
 
-                if (result.StartsWith("{\"error\""))
+            string result = ListAllArticlesRequest().GetAwaiter().GetResult();
+
+            if (result.StartsWith("{\"error\""))
+            {
+                try
                 {
                     Error error = JsonSerializer.Deserialize<Error>(result);
                     Console.WriteLine(error);
                 }
-                else
+                catch (Exception e)
+                {
+                    Console.WriteLine(new Error($"Message:{e.Message}"));
+                }
+            }
+            else
+            {
+                try
                 {
                     result = result.Replace("tag_list", "tags");
                     //In V1 of the API, "tags" and "tags_list" are used two different ways in different calls.
@@ -49,13 +64,19 @@ namespace devto_dotnetcore_cli
                     //I am only using the array so I have to rename the field to match my class architechture.
 
                     List<Article> articles = JsonSerializer.Deserialize<List<Article>>(result);
-                    Console.WriteLine(articles);
+
+                    foreach (var a in articles)
+                    {
+                        Console.WriteLine(a);
+                    }
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(new Error($"Message:{e.Message}"));
                 }
             }
-            catch (Exception e)
-            {
-                Console.WriteLine(new Error(e.Message));
-            }
+
+
         }
 
         public static async Task<string> ListAllArticlesRequest()
@@ -64,7 +85,7 @@ namespace devto_dotnetcore_cli
 
             string apiKey = Program.DevtoAuth();
 
-            if (apiKey != null)
+            if (apiKey.StartsWith("No saved API key found") != true)
             {
                 string url = "https://dev.to/api/articles/me/all";
                 string responseJSON = "";
@@ -103,7 +124,7 @@ namespace devto_dotnetcore_cli
             }
             else
             {
-                return $"{{\"error\": \"Could not get API Key\",\"status\": 0}}";
+                return $"{{\"error\": \"{apiKey}\",\"status\": 0}}";
             }
         }
 
@@ -113,13 +134,37 @@ namespace devto_dotnetcore_cli
             //This means that you won't have to upload images to Dev.to to have them in your article.
             //The images must be in Github before running this prep command.
 
-            Console.WriteLine("The images must be uploaded to Github for this feature to work.\nPlease confirm that the images have been uploaded to Github before continuing");
-            Console.Write("[Y] Yes [N] No :");
-            ConsoleKey confirm = Console.ReadKey().Key;
-
-            if(confirm != ConsoleKey.Y)
+            if (articlePath == null)
             {
-                Console.WriteLine("Please upload to Github and try again.");
+                Console.WriteLine(new Error($"Path to article cannot be emtpy. Please provide a path to the article."));
+                return;
+            }
+
+            if (githubUser == null)
+            {
+                Console.WriteLine(new Error($"Github username cannot be emtpy. Please provide your Github username."));
+                return;
+            }
+
+            if (githubRepo == null)
+            {
+                Console.WriteLine(new Error($"Github repo cannot be emtpy. Please provide the name of the article's Github repo."));
+                return;
+            }
+
+            if (imagesPath == null)
+            {
+                Console.WriteLine(new Error($"Images Path cannot be emtpy. Please provide the path within the repo to the images."));
+                return;
+            }
+
+            Console.WriteLine("The images must be uploaded to Github for this tool to work.\nPlease confirm that the images have been uploaded to Github before continuing");
+            Console.Write("[Y] Yes [N] No : ");
+            string confirm = Console.ReadLine();
+
+            if(confirm.ToLower().Trim() != "y")
+            {
+                Console.WriteLine("Please upload to Github before using this tool.");
                 return;
             }
 
@@ -129,6 +174,8 @@ namespace devto_dotnetcore_cli
                 var articleContent = File.ReadAllText(articlePath);
                 articleContent = articleContent.Replace(imagesPath, imageUrl);
                 File.WriteAllText(".\\dev-to-post.md", articleContent);
+
+                Console.WriteLine("\nYour article has been prepared to be uploaded to Dev.to. The new Markdown file, 'dev-to-post.md', has been created successfully.\n");
             }
             catch (Exception e)
             {
@@ -146,15 +193,20 @@ namespace devto_dotnetcore_cli
                 {
                     url = url.Substring(14);
                 }
-                catch (Exception e)
+                catch (Exception)
                 {
-                    Console.WriteLine(new Error($"Couldn't parse Url\n{e.Message}"));
+                    Console.WriteLine(new Error($"Couldn't parse URL. Please provide a valid Dev.to URL and try again."));
                     return;
                 }
             }
+            else if (url == null)
+            {
+                Console.WriteLine(new Error($"URL cannot be empty. Please provide a URL to the article you wish to retrive."));
+                return;
+            }
             else
             {
-                Console.WriteLine(new Error("Invalid Url\nUrl must start with \"https://dev.to/\""));
+                Console.WriteLine(new Error("Invalid URL\nUrl must start with \"https://dev.to/\""));
                 return;
             }
             
@@ -228,17 +280,47 @@ namespace devto_dotnetcore_cli
             }
         }
 
-        public static void PostArticle(string title, string article_path, string main_image, string series, bool published, string[] tags)
+        public static void PostArticle(string title, string articlePath, string mainImage, string series, bool published, string[] tags)
         {
             //Post a new article to Dev.to from a Markdown file
+            if (title == null)
+            {
+                Console.WriteLine(new Error($"Title cannot be empty. Please provide a title for the new article."));
+                return;
+            }
+
+            if (articlePath == null)
+            {
+                Console.WriteLine(new Error($"Path cannot be emtpy. Please provide a path to the article's Markdown file."));
+                return;
+            }
+            else if (articlePath.EndsWith(".md") != true)
+            {
+                Console.WriteLine(new Error($"Path must point to a Markdown file. Please try again with a different path."));
+                return;
+            }
 
             string body = "";
+            string body_markdown = "";
 
             try
             {
-                string body_markdown = File.ReadAllText(article_path);
+                body_markdown = File.ReadAllText(articlePath);
+            }
+            catch (FileNotFoundException)
+            {
+                Console.WriteLine(new Error($"Path is not valid. Please try again with a different path."));
+                return;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(new Error($"Issue reading article's Markdown file: {e.Message}"));
+                return;
+            }
 
-                body = $"{{\"title\": \"{title},\"published\": \"{published}\",\"main_image\": \"{main_image}\",\"series\": \"{series}\",\"body_markdonw\": \"{body_markdown}\",\"tags\":[";
+            try
+            {
+                body = $"{{\"title\": \"{title},\"published\": \"{published}\",\"main_image\": \"{mainImage}\",\"series\": \"{series}\",\"body_markdonw\": \"{body_markdown}\",\"tags\":[";
 
                 foreach (var tag in tags)
                 {
@@ -324,12 +406,63 @@ namespace devto_dotnetcore_cli
             }
         }
 
-        public static void UpdateArticle(string url, string title, string article_path, string main_image, string series, bool published, string[] tags)
+        public static void UpdateArticle(string url, string articlePath, string title, string mainImage, string series, bool published, string[] tags)
         {
             //Updates an existing article using the URL and a Markdown file.
 
+            if (url == null)
+            {
+                Console.WriteLine(new Error($"URL cannot be empty. Please provide the URL for the article to be udpated."));
+                return;
+            }
+
+            if (articlePath == null)
+            {
+                Console.WriteLine(new Error($"Path cannot be emtpy. Please provide a path to the article's Markdown file."));
+                return;
+            }
+            else if (articlePath.EndsWith(".md") != true)
+            {
+                Console.WriteLine(new Error($"Path must point to a Markdown file. Please try again with a different path."));
+                return;
+            }
+
             string body = "";
+            string body_markdown = "";
             Article originalArticle = new Article();
+
+            //Build the body of the request with the command arguments
+            try
+            {
+                body_markdown = File.ReadAllText(articlePath);
+            }
+            catch (FileNotFoundException)
+            {
+                Console.WriteLine(new Error($"Path is not valid. Please try again with a different path."));
+                return;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(new Error($"Issue reading article's Markdown file: {e.Message}"));
+                return;
+            }
+
+            try
+            {
+                body = $"{{\"title\": \"{title},\"published\": \"{published}\",\"main_image\": \"{mainImage}\",\"series\": \"{series}\",\"body_markdonw\": \"{body_markdown}\",\"tags\":[";
+
+                foreach (var tag in tags)
+                {
+                    body += $"\"{tag}\",";
+                }
+                
+                body = body.Substring(0, body.Length-2) + "]}";
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(new Error($"Issue building request body: {e.Message}"));
+                return;
+            }
 
             //Parsing the URL to get the username and the slug
             if (url.StartsWith("https://dev.to/"))
@@ -369,26 +502,6 @@ namespace devto_dotnetcore_cli
             catch (Exception e)
             {
                 Console.Write(new Error(e.Message));
-                return;
-            }
-
-            //Build the body of the request with the command arguments
-            try
-            {
-                string body_markdown = File.ReadAllText(article_path);
-
-                body = $"{{\"title\": \"{title},\"published\": \"{published}\",\"main_image\": \"{main_image}\",\"series\": \"{series}\",\"body_markdonw\": \"{body_markdown}\",\"tags\":[";
-
-                foreach (var tag in tags)
-                {
-                    body += $"\"{tag}\",";
-                }
-                
-                body = body.Substring(0, body.Length-2) + "]}";
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(new Error($"Issue building request body: {e.Message}"));
                 return;
             }
             

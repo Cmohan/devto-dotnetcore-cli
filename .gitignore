@@ -68,7 +68,8 @@ yarn-error.log
 # Yarn Integrity file
 .yarn-integrity
 
-commands.json
 devto-api-key.json
 publish.ps1
 .vscode
+wiki
+wiki/*
