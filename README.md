@@ -87,7 +87,7 @@ Posts an article to Dev.to
 
 `devto-cli post-article`
 
-Arguments
+**Arguments**
 
 ```
 --title        (-t): The title of the article - Required
@@ -106,7 +106,7 @@ Updates an existing Dev.to article using the article's URL
 
 `devto-cli update-article`
 
-Arguments
+**Arguments**
 
 ```
 --url          (-u): The URL of the article to be update - Required
