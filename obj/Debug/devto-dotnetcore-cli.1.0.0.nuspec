@@ -3,12 +3,16 @@
   <metadata>
     <id>devto-dotnetcore-cli</id>
     <version>1.0.0</version>
-    <authors>devto-dotnetcore-cli</authors>
+    <title>Dev.to API .Net CLI Tool</title>
+    <authors>Catherine Mohan</authors>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <description>Package Description</description>
+    <license type="expression">MIT</license>
+    <licenseUrl>https://licenses.nuget.org/MIT</licenseUrl>
+    <description>This .Net console tool allows you to interact with some parts the Dev.to API and helps with posting articles from Github repos.</description>
     <packageTypes>
       <packageType name="DotnetTool" />
     </packageTypes>
+    <repository type="git" url="https://github.com/Cmohan/devto-dotnetcore-cli" />
     <contentFiles>
       <files include="any/netcoreapp3.1/commands.json" buildAction="Content" />
     </contentFiles>

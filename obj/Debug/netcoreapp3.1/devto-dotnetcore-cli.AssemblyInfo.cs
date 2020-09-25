@@ -11,8 +11,10 @@
 using System;
 using System.Reflection;
 
-[assembly: System.Reflection.AssemblyCompanyAttribute("devto-dotnetcore-cli")]
+[assembly: System.Reflection.AssemblyCompanyAttribute("Catherine Mohan")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
+[assembly: System.Reflection.AssemblyDescriptionAttribute("This .Net console tool allows you to interact with some parts the Dev.to API and " +
+    "helps with posting articles from Github repos.")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
 [assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
 [assembly: System.Reflection.AssemblyProductAttribute("devto-dotnetcore-cli")]

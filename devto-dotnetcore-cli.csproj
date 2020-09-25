@@ -1,19 +1,24 @@
 <Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <OutputType>Exe</OutputType>
+        <TargetFramework>netcoreapp3.1</TargetFramework>
+        <RootNamespace>devto_dotnetcore_cli</RootNamespace>
 
-  <PropertyGroup>
-    <OutputType>Exe</OutputType>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
-    <RootNamespace>devto_dotnetcore_cli</RootNamespace>
-    <VersionPrefix>1.0.0</VersionPrefix>
+        <Title>Dev.to API .Net CLI Tool</Title>
+        <Description>This .Net console tool allows you to interact with some parts the Dev.to API and helps with posting articles from Github repos.</Description>
+        <Authors>Catherine Mohan</Authors>
+        <PackageVersion>1.0.0</PackageVersion>
+        <PackageLicenseExpression>MIT</PackageLicenseExpression>
+        <RepositoryUrl>https://github.com/Cmohan/devto-dotnetcore-cli</RepositoryUrl>
+        <RepositoryType>git</RepositoryType>
 
-    <PackAsTool>true</PackAsTool>
-    <ToolCommandName>devto-cli</ToolCommandName>
-    <PackageOutputPath>./nupkg</PackageOutputPath>
-  </PropertyGroup>
+        <PackAsTool>true</PackAsTool>
+        <ToolCommandName>devto-cli</ToolCommandName>
+        <PackageOutputPath>./nupkg</PackageOutputPath>
+    </PropertyGroup>
 
-  <ItemGroup>
-    <PackageReference Include="System.CommandLine" Version="2.0.0-beta1.20371.2" />
-    <Content Include="commands.json" CopyToPublishDirectory="PreserveNewest" />
-  </ItemGroup>
-
+    <ItemGroup>
+        <PackageReference Include="System.CommandLine" Version="2.0.0-beta1.20371.2" />
+        <Content Include="commands.json" CopyToPublishDirectory="PreserveNewest" />
+    </ItemGroup>
 </Project>
